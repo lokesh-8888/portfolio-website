@@ -1,0 +1,162 @@
+@import 'tailwindcss';
+
+/* electric indigo portfolio theme */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-syne), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-hover: var(--accent-hover);
+  
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-pill-bg: var(--pill-bg);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+}
+
+/* Light theme */
+:root {
+  color-scheme: light;
+  --background: oklch(0.99 0.002 270);
+  --foreground: oklch(0.18 0.01 270);
+  --muted: oklch(0.96 0.004 270);
+  --muted-foreground: oklch(0.52 0.01 270);
+  --border: oklch(0.9 0.006 270);
+  --card: oklch(0.985 0.003 270);
+  --card-foreground: oklch(0.18 0.01 270);
+  --accent: oklch(0.585 0.222 277);
+  /* electric indigo #6366F1 */
+  --accent-foreground: oklch(0.99 0 0);
+  --accent-hover: oklch(0.53 0.224 277);
+  --radius: 0.75rem;
+
+  /* Theme variables */
+  --card-bg: #FFFFFF;
+  --card-border: #E5E7EB;
+  --pill-bg: #F3F4F6;
+  --text-primary: #111111;
+  --text-secondary: #374151;
+  --text-muted: #6B7280;
+}
+
+/* Dark theme (default) */
+.dark, [data-theme="dark"] {
+  color-scheme: dark;
+  --background: oklch(0.16 0.006 270);
+  --foreground: oklch(0.96 0.004 270);
+  --muted: oklch(0.22 0.008 270);
+  --muted-foreground: oklch(0.66 0.01 270);
+  --border: oklch(0.28 0.01 270);
+  --card: oklch(0.2 0.008 270);
+  --card-foreground: oklch(0.96 0.004 270);
+  --accent: oklch(0.65 0.2 277);
+  /* brighter indigo on dark */
+  --accent-foreground: oklch(0.15 0.01 270);
+  --accent-hover: oklch(0.72 0.18 277);
+
+  /* Theme variables */
+  --card-bg: #1A1A1A;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --pill-bg: #111111;
+  --text-primary: #F5F5F5;
+  --text-secondary: #CCCCCC;
+  --text-muted: #888888;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  /* Accessible focus states for keyboard users */
+  *:focus-visible {
+    outline: 2px solid var(--accent) !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Fade out animation for the page loader */
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+      visibility: visible;
+    }
+    to {
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+    }
+  }
+
+  /* Pulse logo animation */
+  @keyframes pulse-logo {
+    0%, 100% {
+      transform: scale(0.95);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+
+  .loader-fade-out {
+    animation: fade-out 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  .loader-pulse-logo {
+    animation: pulse-logo 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Animated background blobs drifting */
+  @keyframes blob-drift {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(40px, -60px) scale(1.15);
+    }
+    66% {
+      transform: translate(-30px, 30px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  .animate-blob {
+    animation: blob-drift 25s infinite alternate ease-in-out;
+  }
+}
