@@ -147,7 +147,15 @@ export default function ContactSection() {
       } else {
         const errorText = await response.text();
         console.error("EmailJS Error Response:", errorText);
-        showToast("error", `Failed to send message: ${response.statusText}`);
+        
+        let displayError = response.statusText;
+        if (errorText.includes("Invalid grant") || errorText.includes("reconnect your Gmail")) {
+          displayError = "Email service needs reconnection. Please log into your EmailJS dashboard and reconnect your Gmail account.";
+        } else if (errorText) {
+          displayError = errorText;
+        }
+        
+        showToast("error", `Failed to send message: ${displayError}`);
       }
     } catch (error) {
       console.error("Connection error sending email:", error);

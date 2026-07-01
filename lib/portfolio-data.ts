@@ -1,6 +1,6 @@
 export interface TimelineEntry {
   id: string;
-  type: "work" | "education";
+  type: "work" | "education" | "research";
   title: string;
   organization: string;
   dateRange: string;
@@ -37,14 +37,14 @@ export interface CertificationEntry {
 export const timelineData: TimelineEntry[] = [
   {
     id: "exp-1",
-    type: "work",
-    title: "Senior Frontend Engineer",
-    organization: "TechCorp Inc.",
-    dateRange: "Jan 2025 – Present",
+    type: "research",
+    title: "Named Entity Recognition in Resource-Constrained Languages",
+    organization: "SRM University-AP",
+    dateRange: "May 2026 – Present",
     bullets: [
-      "Led migration of core application to Next.js, improving load speeds and SEO ranking by 40%.",
-      "Designed and developed a reusable component system using Tailwind CSS, streamlining work across 3 development squads.",
-      "Spearheaded optimization of data visualization dashboards, reducing browser memory usage by 25%."
+      "Researched NLP techniques for Named Entity Recognition (NER) in low-resource languages with limited annotated training data.",
+      "Explored transfer learning approaches using multilingual transformer models (mBERT, XLM-R) to improve entity detection across resource-constrained linguistic contexts.",
+      "Investigated data augmentation strategies and cross-lingual transfer to address scarcity of labeled datasets in regional and minority languages."
     ]
   },
   {
@@ -235,7 +235,7 @@ export const certificationData: CertificationEntry[] = [
     title: "SAP Certified - SAP Generative AI Developer",
     issuer: "SAP",
     date: "July 2026",
-    verifyUrl: "https://credsverse.com/credentials/sap-generative-ai-developer"
+    verifyUrl: "https://www.credly.com/badges/22f0d5cc-9343-4b32-912c-f4be97da4e91/public_url"
   }
 ];
 

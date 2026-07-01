@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, Briefcase, GraduationCap } from "lucide-react";
+import { Calendar, Briefcase, GraduationCap, Beaker } from "lucide-react";
 import { timelineData, TimelineEntry } from "@/lib/portfolio-data";
 import { Reveal } from "./reveal";
 import { cn } from "@/lib/utils";
@@ -24,7 +24,7 @@ export default function ExperienceTimeline() {
         <div className="relative pl-8 md:pl-0 border-l border-border/80 md:border-l-0 md:before:absolute md:before:left-1/2 md:before:top-0 md:before:bottom-0 md:before:w-[1px] md:before:-translate-x-1/2 md:before:bg-border/80">
           {timelineData.map((entry, idx) => {
             const isEven = idx % 2 === 0;
-            const Icon = entry.type === "work" ? Briefcase : GraduationCap;
+            const Icon = entry.type === "work" ? Briefcase : entry.type === "research" ? Beaker : GraduationCap;
 
             return (
               <div
@@ -57,8 +57,16 @@ export default function ExperienceTimeline() {
                       {/* Top Meta info */}
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2">
-                          <Icon className="w-4 h-4 text-accent" />
-                          <span className="text-[11px] font-semibold tracking-wider uppercase text-accent bg-accent/10 px-2 py-0.5 rounded-md">
+                          <Icon className={cn(
+                            "w-4 h-4",
+                            entry.type === "research" ? "text-purple-600 dark:text-purple-400" : "text-accent"
+                          )} />
+                          <span className={cn(
+                            "text-[11px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-md",
+                            entry.type === "research"
+                              ? "text-purple-600 dark:text-purple-400 bg-purple-600/10 dark:bg-purple-400/10"
+                              : "text-accent bg-accent/10"
+                          )}>
                             {entry.type}
                           </span>
                         </div>
