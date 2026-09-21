@@ -7,13 +7,19 @@ export interface TimelineEntry {
   bullets?: string[];
 }
 
+export type ProjectCategory = "all" | "genai-rag" | "fullstack-backend" | "ml-analytics";
+
 export interface ProjectEntry {
   id: string;
   title: string;
   description: string;
+  category: "genai-rag" | "fullstack-backend" | "ml-analytics";
+  categoryLabel: string;
   tags: string[];
   githubUrl: string;
   demoUrl?: string;
+  year?: string;
+  featured?: boolean;
 }
 
 export interface SkillItem {
@@ -38,13 +44,13 @@ export const timelineData: TimelineEntry[] = [
   {
     id: "exp-1",
     type: "research",
-    title: "Named Entity Recognition in Resource-Constrained Languages",
+    title: "Brain Tumor Detection System",
     organization: "SRM University-AP",
     dateRange: "May 2026 – Present",
     bullets: [
-      "Researched NLP techniques for Named Entity Recognition (NER) in low-resource languages with limited annotated training data.",
-      "Explored transfer learning approaches using multilingual transformer models (mBERT, XLM-R) to improve entity detection across resource-constrained linguistic contexts.",
-      "Investigated data augmentation strategies and cross-lingual transfer to address scarcity of labeled datasets in regional and minority languages."
+      "Designing and developing a custom deep learning computer vision model from scratch to detect and classify brain tumors from MRI scans.",
+      "Building end-to-end data preprocessing pipelines including intensity normalization, artifact filtering, and medical image augmentation.",
+      "Benchmarking accuracy and sensitivity against standard CNN models to ensure reliable early-stage detection."
     ]
   },
   {
@@ -72,50 +78,188 @@ export const timelineData: TimelineEntry[] = [
   }
 ];
 
+export const projectCategories = [
+  { id: "all", label: "All Projects" },
+  { id: "genai-rag", label: "GenAI & RAG Applications" },
+  { id: "fullstack-backend", label: "Full Stack & Backend Systems" },
+  { id: "ml-analytics", label: "Machine Learning & Data Analytics" }
+] as const;
+
 export const projectData: ProjectEntry[] = [
+  // --- GenAI & RAG Applications ---
   {
-    id: "proj-1",
-    title: "DeepFake Audio Detection System",
-    description: "Built a CNN-based system to classify audio as real or spoofed using MFCC features from the ASVspoof 2019 dataset. Designed a processing pipeline converting audio formats to FLAC and averaging CNN predictions. Deployed a Streamlit interface supporting multi-format audio uploads.",
-    tags: ["Python", "TensorFlow", "Keras", "Streamlit", "Librosa", "CNN", "MFCC"],
-    githubUrl: "https://github.com/lokesh-8888/deepfake_audio_detection_system"
-  },
-  {
-    id: "proj-2",
-    title: "AI Career Intelligence Platform",
-    description: "Built an AI-powered platform that analyzes resumes, identifies skill gaps, and generates personalized career roadmaps. Implemented graph-based career recommendations with Neo4j, NLP-driven skill extraction, secure JWT auth, Redis caching, and Dockerized deployments.",
-    tags: ["React.js", "FastAPI", "Neo4j", "Redis", "Docker", "JWT", "SpaCy", "LLMs"],
-    githubUrl: "https://github.com/lokesh-8888/AI-Career-Platform"
-  },
-  {
-    id: "proj-3",
-    title: "FaqFlow — AI RAG Bot",
-    description: "Developed a conversational AI assistant with Retrieval-Augmented Generation (RAG) architecture using FastAPI, Pinecone vector database, HuggingFace embeddings, and Groq LLMs. Implemented prompt-engineered responses, chat history tracking, and a clean JS interface.",
-    tags: ["FastAPI", "Pinecone", "HuggingFace", "Groq LLM", "RAG", "JavaScript"],
-    githubUrl: "https://github.com/lokesh-8888/faq-flow-ai-using-RAG",
-    demoUrl: "https://faq-flow-ai-using-rag.onrender.com/"
-  },
-  {
-    id: "proj-4",
+    id: "proj-documind",
     title: "DocuMind — AI Document Assistant",
-    description: "Built a RAG-based document assistant for chatting with PDFs, DOCX, and PPTX files. Implemented OCR-based text extraction with Tesseract, semantic vector search via Pinecone/FastEmbed, real-time streaming, and source-aware responses with page number citations.",
-    tags: ["FastAPI", "React.js", "Pinecone", "FastEmbed", "Groq LLM", "OCR", "Tailwind CSS"],
-    githubUrl: "https://github.com/lokesh-8888/DocuMind-AI"
+    category: "genai-rag",
+    categoryLabel: "GenAI & RAG",
+    description: "Built a production-grade RAG document assistant to interact with PDFs, DOCX, and PPTX files. Implemented OCR-based text extraction with Tesseract, semantic vector search via Pinecone & FastEmbed, real-time streaming, and source-aware citations.",
+    tags: ["FastAPI", "React.js", "Pinecone", "FastEmbed", "Groq LLM", "OCR", "Python"],
+    githubUrl: "https://github.com/lokesh-8888/DocuMind-AI",
+    year: "2026",
+    featured: true
   },
   {
-    id: "proj-5",
+    id: "proj-career-ai",
+    title: "AI Career Intelligence Platform",
+    category: "genai-rag",
+    categoryLabel: "GenAI & RAG",
+    description: "AI-powered career roadmap and intelligence platform analyzing resumes, identifying skill gaps, and generating dynamic career pathways. Uses Neo4j graph recommendations, NLP skill extraction with SpaCy, Redis caching, and Dockerized microservices.",
+    tags: ["React.js", "FastAPI", "Neo4j", "Redis", "Docker", "SpaCy", "LLMs", "TypeScript"],
+    githubUrl: "https://github.com/lokesh-8888/AI-Career-Platform",
+    year: "2026",
+    featured: true
+  },
+  {
+    id: "proj-faqflow",
+    title: "FaqFlow — AI RAG Chatbot",
+    category: "genai-rag",
+    categoryLabel: "GenAI & RAG",
+    description: "Conversational AI assistant with Retrieval-Augmented Generation architecture using FastAPI, Pinecone vector database, Hugging Face embeddings, and Groq LLMs. Features prompt-engineered responses, session memory, and live cloud deployment.",
+    tags: ["FastAPI", "Pinecone", "HuggingFace", "Groq LLM", "RAG", "Python"],
+    githubUrl: "https://github.com/lokesh-8888/faq-flow-ai-using-RAG",
+    demoUrl: "https://faq-flow-ai-using-rag.onrender.com/",
+    year: "2026",
+    featured: true
+  },
+  {
+    id: "proj-lenny-ai",
+    title: "Lenny Growth Assistant",
+    category: "genai-rag",
+    categoryLabel: "GenAI & RAG",
+    description: "Specialized AI conversational assistant tailored for product managers and startup founders, delivering synthesized growth frameworks, benchmark metrics, and strategy recommendations.",
+    tags: ["Python", "LLMs", "Prompt Engineering", "FastAPI", "RAG"],
+    githubUrl: "https://github.com/lokesh-8888/lenny-growth-assistant",
+    year: "2026"
+  },
+  {
+    id: "proj-ai-finance",
+    title: "AI Finance Controller",
+    category: "genai-rag",
+    categoryLabel: "GenAI & RAG",
+    description: "Intelligent financial tracking and budget controller utilizing LLM reasoning for automated transaction classification, anomaly detection, and spend optimization insights.",
+    tags: ["Python", "FastAPI", "LLMs", "Financial Analysis", "JSON Schema"],
+    githubUrl: "https://github.com/lokesh-8888/ai-finance-controller",
+    year: "2026"
+  },
+
+  // --- Full Stack & Backend Systems ---
+  {
+    id: "proj-blood-bank",
     title: "Blood Bank Management System",
-    description: "Developed a role-based blood bank management platform enabling donors, recipients, and admins to handle donation appointments and request approvals. Built a scalable MVC backend using Node.js/Express, JWT authentication, and bcrypt, deployed with MongoDB Atlas on Render.",
-    tags: ["Node.js", "Express.js", "MongoDB", "JWT", "bcrypt", "Render"],
-    githubUrl: "https://github.com/lokesh-8888/blood-bank-management-system"
+    category: "fullstack-backend",
+    categoryLabel: "Full Stack & Backend",
+    description: "Role-based donation and blood bank inventory management platform enabling donors, recipients, and hospital admins to schedule appointments and approve requests. Built with Node.js/Express, JWT auth, bcrypt, and MongoDB Atlas.",
+    tags: ["Node.js", "Express.js", "MongoDB", "JWT", "REST APIs", "Render"],
+    githubUrl: "https://github.com/lokesh-8888/blood-bank-management-system",
+    year: "2025",
+    featured: true
+  },
+  {
+    id: "proj-food-delivery",
+    title: "Food Delivery Backend Engine",
+    category: "fullstack-backend",
+    categoryLabel: "Full Stack & Backend",
+    description: "Scalable MERN-stack backend architecture supporting restaurant listings, menu configuration, cart operations, order processing, and role-based access control.",
+    tags: ["Node.js", "Express.js", "MongoDB", "MERN Stack", "REST APIs", "JavaScript"],
+    githubUrl: "https://github.com/lokesh-8888/food-delivery-backend",
+    year: "2026"
+  },
+  {
+    id: "proj-razorledger",
+    title: "RazorLedger — Ledger Engine",
+    category: "fullstack-backend",
+    categoryLabel: "Full Stack & Backend",
+    description: "High-integrity enterprise ledger and transaction recording engine written in Java, designed for high-concurrency balance auditing and robust financial record keeping.",
+    tags: ["Java", "OOP", "System Design", "Data Integrity", "Spring Boot"],
+    githubUrl: "https://github.com/lokesh-8888/razorledger-ai",
+    year: "2026"
+  },
+  {
+    id: "proj-bank-mgmt",
+    title: "Core Banking Management System",
+    category: "fullstack-backend",
+    categoryLabel: "Full Stack & Backend",
+    description: "Robust Java-based banking software handling multi-account creation, deposits, withdrawals, fund transfers, and transactional audit trails.",
+    tags: ["Java", "OOP", "MySQL", "JDBC", "Software Architecture"],
+    githubUrl: "https://github.com/lokesh-8888/Bank-Management-System",
+    year: "2026"
+  },
+  {
+    id: "proj-portfolio",
+    title: "Modern Portfolio & Developer Showcase",
+    category: "fullstack-backend",
+    categoryLabel: "Full Stack & Backend",
+    description: "High-performance personal engineering portfolio built with Next.js 16 (Turbopack), TypeScript, Tailwind CSS, dark glassmorphic styling, and interactive filtering.",
+    tags: ["Next.js", "React.js", "TypeScript", "Tailwind CSS", "Turbopack"],
+    githubUrl: "https://github.com/lokesh-8888/portfolio-website",
+    year: "2026"
+  },
+
+  // --- Machine Learning & Data Analytics ---
+  {
+    id: "proj-brain-tumor-detection",
+    title: "Brain Tumor Detection System",
+    category: "ml-analytics",
+    categoryLabel: "ML & Data Analytics",
+    description: "Building a custom deep learning computer vision model from scratch to detect and classify brain tumors from MRI scans with advanced preprocessing and augmentation pipelines.",
+    tags: ["Python", "Deep Learning", "CNN", "Computer Vision", "Medical AI"],
+    githubUrl: "https://github.com/lokesh-8888/deep-learning",
+    year: "May 2026 – Present",
+    featured: true
+  },
+  {
+    id: "proj-deepfake-audio",
+    title: "DeepFake Audio Detection System",
+    category: "ml-analytics",
+    categoryLabel: "ML & Data Analytics",
+    description: "Built a CNN-based system to classify audio as real or spoofed using MFCC features from the ASVspoof 2019 dataset. Designed a processing pipeline converting audio formats to FLAC and averaging CNN predictions with a Streamlit interface.",
+    tags: ["Python", "TensorFlow", "Keras", "Streamlit", "Librosa", "CNN", "MFCC"],
+    githubUrl: "https://github.com/lokesh-8888/deepfake_audio_detection_system",
+    year: "2026",
+    featured: true
+  },
+  {
+    id: "proj-dengue-ml",
+    title: "KNN Dengue Outbreak Prediction",
+    category: "ml-analytics",
+    categoryLabel: "ML & Data Analytics",
+    description: "Predictive epidemiological model using K-Nearest Neighbors (KNN) to analyze climate parameters (temperature, humidity, precipitation) and forecast dengue outbreak vulnerability.",
+    tags: ["Python", "Scikit-learn", "Pandas", "NumPy", "Jupyter Notebook", "Matplotlib"],
+    githubUrl: "https://github.com/lokesh-8888/knn_dengue-ml-project",
+    year: "2025"
+  },
+  {
+    id: "proj-zomato-etl",
+    title: "Zomato AI & Data Engineering Pipeline",
+    category: "ml-analytics",
+    categoryLabel: "ML & Data Analytics",
+    description: "End-to-end modern data stack and AI pipeline for food delivery analytics. Ingests raw data into Snowflake, orchestrates medallion transformations (RAW -> STAGING -> MARTS) via dbt, automates batch workflows with Apache Airflow & Docker, and deploys Streamlit Text-to-SQL & review RAG assistants.",
+    tags: ["Snowflake", "dbt", "Apache Airflow", "Python", "Docker", "Streamlit", "Text-to-SQL", "RAG", "Pandas", "ETL Pipelines"],
+    githubUrl: "https://github.com/lokesh-8888/zomato-ai-data-engineering",
+    year: "2026",
+    featured: true
+  },
+  {
+    id: "proj-ecommerce-sentiment",
+    title: "E-Commerce Customer Sentiment Analysis",
+    category: "ml-analytics",
+    categoryLabel: "ML & Data Analytics",
+    description: "NLP sentiment analysis engine evaluating customer reviews and feedback trends to classify satisfaction levels, feature requests, and pain points.",
+    tags: ["TypeScript", "NLP", "Data Analytics", "Sentiment Analysis"],
+    githubUrl: "https://github.com/lokesh-8888/ecommerce-sentiment-analysis",
+    year: "2026"
   }
 ];
+
+// Alias for backwards-compatibility
+export const projects = projectData;
 
 export const skillCategories: SkillCategory[] = [
   {
     title: "Programming Languages",
     skills: [
       { name: "Python" },
+      { name: "TypeScript" },
       { name: "JavaScript" },
       { name: "C++" },
       { name: "Java" },
@@ -128,43 +272,54 @@ export const skillCategories: SkillCategory[] = [
       { name: "Node.js" },
       { name: "Express.js" },
       { name: "FastAPI" },
-      { name: "REST APIs" }
+      { name: "Spring Boot" },
+      { name: "REST APIs" },
+      { name: "JWT Auth" },
+      { name: "MERN Stack" }
     ]
   },
   {
-    title: "Databases",
+    title: "Databases & Data Warehousing",
     skills: [
+      { name: "Snowflake" },
       { name: "MongoDB" },
       { name: "MySQL" },
-      { name: "Redis" }
+      { name: "Redis" },
+      { name: "Neo4j" },
+      { name: "Pinecone (Vector DB)" }
     ]
   },
   {
     title: "AI & Agentic Systems",
     skills: [
+      { name: "Deep Learning" },
       { name: "Machine Learning" },
+      { name: "Text-to-SQL" },
       { name: "Large Language Models" },
       { name: "RAG Architecture" },
-      { name: "Vector Databases (Pinecone)" },
-      { name: "HuggingFace" },
-      { name: "NLP (SpaCy)" },
+      { name: "Computer Vision" },
+      { name: "Prompt Engineering" },
       { name: "TensorFlow" },
       { name: "Keras" },
-      { name: "CNN" }
+      { name: "CNN" },
+      { name: "HuggingFace" },
+      { name: "SpaCy (NLP)" }
     ]
   },
   {
     title: "Frontend Development",
     skills: [
       { name: "React.js" },
+      { name: "Next.js" },
+      { name: "Tailwind CSS" },
       { name: "HTML" },
-      { name: "CSS" },
-      { name: "Tailwind CSS" }
+      { name: "CSS" }
     ]
   },
   {
     title: "Cloud & DevOps",
     skills: [
+      { name: "Apache Airflow" },
       { name: "Docker" },
       { name: "Git" },
       { name: "GitHub" },
@@ -188,14 +343,16 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Tools & Libraries",
     skills: [
+      { name: "dbt" },
+      { name: "ETL Pipelines" },
       { name: "Streamlit" },
-      { name: "Librosa" },
-      { name: "PyMuPDF" },
-      { name: "Tesseract OCR" },
       { name: "Scikit-learn" },
       { name: "NumPy" },
       { name: "Pandas" },
-      { name: "Matplotlib" }
+      { name: "Matplotlib" },
+      { name: "PyMuPDF" },
+      { name: "Tesseract OCR" },
+      { name: "Librosa" }
     ]
   },
   {

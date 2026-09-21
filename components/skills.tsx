@@ -6,6 +6,7 @@ import { Reveal } from "./reveal";
 const skillIcons: Record<string, { type: "devicon" | "symbol" | "dot"; value: string }> = {
   // Programming Languages
   "Python": { type: "devicon", value: "python/python-original.svg" },
+  "TypeScript": { type: "devicon", value: "typescript/typescript-original.svg" },
   "JavaScript": { type: "devicon", value: "javascript/javascript-original.svg" },
   "C++": { type: "devicon", value: "cplusplus/cplusplus-original.svg" },
   "Java": { type: "devicon", value: "java/java-original.svg" },
@@ -15,23 +16,40 @@ const skillIcons: Record<string, { type: "devicon" | "symbol" | "dot"; value: st
   "Node.js": { type: "devicon", value: "nodejs/nodejs-original.svg" },
   "Express.js": { type: "devicon", value: "express/express-original.svg" },
   "FastAPI": { type: "devicon", value: "fastapi/fastapi-original.svg" },
+  "Spring Boot": { type: "devicon", value: "spring/spring-original.svg" },
+  "JWT Auth": { type: "dot", value: "#D63AFF" },
+  "MERN Stack": { type: "dot", value: "#61DAFB" },
 
-  // Databases
+  // Databases & Warehousing
+  "Snowflake": { type: "dot", value: "#29B5E8" },
   "MongoDB": { type: "devicon", value: "mongodb/mongodb-original.svg" },
   "MySQL": { type: "devicon", value: "mysql/mysql-original.svg" },
   "Redis": { type: "devicon", value: "redis/redis-original.svg" },
+  "Neo4j": { type: "devicon", value: "neo4j/neo4j-original.svg" },
+  "Pinecone (Vector DB)": { type: "dot", value: "#10B981" },
 
   // AI & Agentic
+  "Deep Learning": { type: "dot", value: "#6366F1" },
+  "Machine Learning": { type: "dot", value: "#8B5CF6" },
+  "Text-to-SQL": { type: "dot", value: "#8B5CF6" },
+  "Computer Vision": { type: "dot", value: "#06B6D4" },
+  "Large Language Models": { type: "dot", value: "#10B981" },
+  "RAG Architecture": { type: "dot", value: "#F59E0B" },
+  "Prompt Engineering": { type: "dot", value: "#EC4899" },
   "TensorFlow": { type: "devicon", value: "tensorflow/tensorflow-original.svg" },
   "Keras": { type: "devicon", value: "keras/keras-original.svg" },
+  "HuggingFace": { type: "dot", value: "#FFD21E" },
+  "SpaCy (NLP)": { type: "dot", value: "#09A3D5" },
 
   // Frontend
   "React.js": { type: "devicon", value: "react/react-original.svg" },
+  "Next.js": { type: "devicon", value: "nextjs/nextjs-original.svg" },
   "HTML": { type: "devicon", value: "html5/html5-original.svg" },
   "CSS": { type: "devicon", value: "css3/css3-original.svg" },
   "Tailwind CSS": { type: "devicon", value: "tailwindcss/tailwindcss-original.svg" },
 
   // Cloud & DevOps
+  "Apache Airflow": { type: "devicon", value: "apacheairflow/apacheairflow-original.svg" },
   "Docker": { type: "devicon", value: "docker/docker-original.svg" },
   "Git": { type: "devicon", value: "git/git-original.svg" },
   "GitHub": { type: "devicon", value: "github/github-original.svg" },
@@ -39,8 +57,13 @@ const skillIcons: Record<string, { type: "devicon" | "symbol" | "dot"; value: st
   "Render": { type: "dot", value: "#00C7B7" },
 
   // Tools & Libraries
+  "dbt": { type: "dot", value: "#FF694B" },
+  "Streamlit": { type: "dot", value: "#FF4B4B" },
+  "Scikit-learn": { type: "dot", value: "#F7931E" },
   "NumPy": { type: "devicon", value: "numpy/numpy-original.svg" },
   "Pandas": { type: "devicon", value: "pandas/pandas-original.svg" },
+  "Matplotlib": { type: "dot", value: "#11557C" },
+  "ETL Pipelines": { type: "dot", value: "#3B82F6" },
 
   // Dev Tools & IDEs
   "Postman": { type: "devicon", value: "postman/postman-original.svg" },
